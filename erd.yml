@@ -1,0 +1,16 @@
+name: ERD Build
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-erd:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Build ERD
+        run: npx @liam-hq/cli erd build --input prisma/schema.prisma --format prisma
+
+    # - Next step: Deploy ERD `./dist` to your preferred hosting service for easy sharing and access.
